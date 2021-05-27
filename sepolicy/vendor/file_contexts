@@ -8,6 +8,8 @@
 /vendor/bin/batterysecret		u:object_r:batterysecret_exec:s0
 /mnt/vendor/persist/subsys(/.*)?                u:object_r:persist_subsys_file:s0
 /sys/devices/platform/soc/soc:qcom,pmic_glink/soc:qcom,pmic_glink:qcom,ucsi/typec/port0/data_role        u:object_r:vendor_sysfs_usb_supply:s0
+/sys/devices/platform/soc/884000.i2c/i2c-5/5-0066/power_supply/bq2597x-standalone(/.*)?                                                            u:object_r:sysfs_battery_supply:s0
+/sys/devices/platform/soc/soc:maxim_ds28e16/power_supply/batt_verify(/.*)?                                                                         u:object_r:sysfs_battery_supply:s0
 
 # Camera
 /mnt/vendor/persist/camera(/.*)?   u:object_r:camera_persist_file:s0
