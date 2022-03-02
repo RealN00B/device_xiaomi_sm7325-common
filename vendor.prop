@@ -295,3 +295,6 @@ wifi.aware.interface=wifi-aware0
 
 # Zygote
 zygote.critical_window.minute=10
+
+# USB
+vendor.usb.product_string=Poco X5 Pro
