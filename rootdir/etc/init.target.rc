@@ -133,6 +133,9 @@ on boot
     chown system system /sys/devices/virtual/touch/tp_dev/double_tap
     chown cameraserver cameraserver /sys/class/thermal/thermal_message/flash_state
 
+    # Set thermal mode to evaluation
+    write /sys/class/thermal/thermal_message/sconfig 10
+
     # Set xiaomi touch permissions
     chown system system /dev/xiaomi-touch
     chmod 0660 /dev/xiaomi-touch
