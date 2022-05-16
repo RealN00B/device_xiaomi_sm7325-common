@@ -10,6 +10,9 @@ ro.audio.resampler.psd.tbwcheat=0
 vendor.bluetooth.soc=hastings
 persist.bluetooth.sbc_hd_higher_bitrate=1
 
+# Camera
+vendor.camera.aux.packagelist=com.android.camera
+
 # Charger
 ro.charger.enable_suspend=true
 
