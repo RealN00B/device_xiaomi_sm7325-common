@@ -31,6 +31,9 @@ debug.sf.enable_hwc_vds=1
 # Maintainer
 ro.spos.maintainer=RDx55
 
+# LMK
+ro.config.low_ram=false
+
 # Media
 media.aac_51_output_enabled=true
 media.stagefright.enable-aac=true
