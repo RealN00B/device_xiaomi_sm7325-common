@@ -38,6 +38,10 @@ on early-init
     write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 0
     # Disable UFS clock gating
     write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 0
+	
+    # Workarround for cache
+    rm /data/resource-cache
+    rm /data/system/package_cache 
 
     mkdir /mnt/vendor/dsp 0770 root root
     copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3
