@@ -52,19 +52,6 @@
             tools:replace="android:authorities"/>
 
         <activity
-            android:name=".doze.DozeSettingsActivity"
-            android:label="@string/ambient_display_title">
-            <intent-filter>
-                <action android:name="org.lineageos.settings.device.DOZE_SETTINGS" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <service android:name=".doze.DozeService"
-                 android:permission="XiaomiDozeService">
-        </service>
-
-        <activity
             android:name=".thermal.ThermalActivity"
             android:label="@string/thermal_title">
             <intent-filter>
