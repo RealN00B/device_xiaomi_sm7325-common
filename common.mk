@@ -180,6 +180,10 @@ TARGET_EXCLUDES_AUDIOFX := true
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.4-service.clearkey
 
+# FastCharge
+PRODUCT_PACKAGES += \
+    vendor.lineage.fastcharge@1.0-service.xiaomi_sm7325
+
 # Fastbootd
 PRODUCT_PACKAGES += \
     fastbootd
