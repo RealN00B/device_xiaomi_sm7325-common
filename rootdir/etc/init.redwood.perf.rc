@@ -18,15 +18,23 @@ on post-fs-data
 
 on init
     copy_per_line /dev/cpuctl/tasks /dev/cpuctl/system/tasks
+    
+    # Boot time fs tuning
+    write /dev/sys/fs/by-name/userdata/data_io_flag 56
+    write /dev/sys/fs/by-name/userdata/node_io_flag 56
 
 # Migrate tasks again in case kernel threads are created during boot
 on property:sys.boot_completed=1
     copy_per_line /dev/cpuctl/tasks /dev/cpuctl/system/tasks
+    
+    # Runtime fs tuning
+    write /dev/sys/fs/by-name/userdata/data_io_flag 8
+    write /dev/sys/fs/by-name/userdata/node_io_flag 8
 
 on property:vendor.post_boot.parsed=1
     # Setup runtime cpusets
     write /dev/cpuset/top-app/cpus 0-7
-    write /dev/cpuset/background/cpus 0-2
+    write /dev/cpuset/background/cpus 0-1
     write /dev/cpuset/system-background/cpus 0-3
     write /dev/cpuset/audio-app/cpus 1-2
     write /dev/cpuset/restricted/cpus 0-3
@@ -36,12 +44,20 @@ on property:vendor.post_boot.parsed=1
     write /sys/devices/system/cpu/cpu_boost/input_boost_ms 120
 
     # Configure schedutil ratelimits
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 5000
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 20000
-    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/up_rate_limit_us 500
-    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/down_rate_limit_us 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us 1000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us 3000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us 1000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us 30000
+    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/up_rate_limit_us 1000
+    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/down_rate_limit_us 30000
+    
+    # Screen off ratelimits
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/up_rate_limit_us_screen_off 2000
+    write /sys/devices/system/cpu/cpu0/cpufreq/schedutil/down_rate_limit_us_screen_off 2000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/up_rate_limit_us_screen_off 2000
+    write /sys/devices/system/cpu/cpu4/cpufreq/schedutil/down_rate_limit_us_screen_off 2000
+    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/up_rate_limit_us_screen_off 2000
+    write /sys/devices/system/cpu/cpu7/cpufreq/schedutil/down_rate_limit_us_screen_off 2000
 
     # Configure scheduler
     write /proc/sys/kernel/sched_group_downmigrate 25
